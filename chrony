@@ -1,0 +1,19 @@
+---
+tags [ network-services,linux ]
+---
+
+# In case no NTP is running sync the hw clock to the system clock
+hwclock --hctosys
+
+# Or reverse: sync the system to hw clock
+hwclock --systohc
+
+# In centos 7 this is done every 11 minutes check /etc/chrony.conf
+chronyc -a 'burst 4/4'
+chronyc -a makestep
+
+# To view NTP specs
+chronyc tracking
+chronyc sources
+chronyc sourcestats
+chronyc activity

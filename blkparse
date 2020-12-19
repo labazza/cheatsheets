@@ -1,0 +1,10 @@
+---
+tags [ storage,linux ]
+---
+
+# capture blktrace_file
+# parse reads size
+blkparse -i blktrace_file -a complete | grep ' R ' | awk '{print $10}' | sort | uniq -c  | sort -g ${@}
+
+# parse writes size
+blkparse -i blktrace_file -a complete | grep -v ' R ' | awk '{print $10}' | sort | uniq -c  | sort -g ${@}

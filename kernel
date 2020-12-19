@@ -1,0 +1,23 @@
+---
+tags [ kernel,linux ]
+---
+
+# list installed kernels
+yum list installed kernel-*
+
+# Kernel version: 3.10.0-514
+# - the major version is three
+# - the major revision is 10
+# - the kernel patch version is zero
+# - and the Red Hat version is 514
+
+# Kernel updates
+# if blue colored is an update available
+yum list avaiable kernel
+yum update -y kernel
+
+# Will boot on one version older kernel since i can’t uninstall current version
+grub2-set-default 1
+
+# To remove most recent kernel
+yum remove kernel

@@ -1,0 +1,23 @@
+---
+tags [ storage, linux,memory ]
+---
+
+# display
+cat /proc/swaps
+
+# turn off
+swapoff /dev/sda5
+
+# Create
+# there is need of the space in memory for the used space of swap
+dd if=/dev/zero of=/var/swapfile bs=1G count=8
+chmod 600 /var/swapfile
+mkswap /var/swapfile
+swapon /var/swapfile
+echo '/var/swapfile swap swap defaults 0 0' >> /etc/fstab
+
+# Higher Priority is an higher number, deactivate the swap partition first then
+swapon -p 5 /swapfile
+
+# Permanent, Add to fstab the pri option like
+/swapfile swap swap pri=9 0 0

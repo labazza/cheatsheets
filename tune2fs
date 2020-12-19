@@ -1,0 +1,20 @@
+---
+tags [ storage,linux ]
+---
+
+# to see if file-system is clean
+sudo tune2fs -l /dev/sda1
+
+# quotas
+tune2fs -E mount_opts="usrquota grpquota" /dev/sdb
+
+# force file-system check at boot
+touch /forcefsck
+
+# dump
+sudo dumpe2fs -h /dev/sdb1 | grep -i 'mount count'
+
+# smart-tools and smartctl
+yum install smartmontools && smartctl  -a /dev/sdb
+# t reads from disk and T reads from cache
+sudo hdparm -tT /dev/sda1

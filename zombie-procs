@@ -1,0 +1,12 @@
+---
+tags [ processes,linux ]
+---
+
+# What can be done is to notify its parent process explicitly so that it can retry to read the child (dead) process’s status and eventually clean them from the process table. This can be done by sending a SIGCHLD signal to the parent process. The following command can be used to find the parent process ID (PID):
+ps -o ppid= <Child PID>
+
+# Once you have the Zombie’s parent process ID, you can use the following command to send a SIGCHLD signal to the parent process:
+kill -s SIGCHLD <Parent PID>
+
+# Or if doesn't wor
+kill -9 <Parent PID>

@@ -1,0 +1,32 @@
+---
+tags [ kernel,linux ]
+---
+
+# Modules can be loaded passing parameters to them
+modprobe e1000e debug=2 copybreak=256
+
+
+# Files are stored in /lib or /lib64
+ls -l /lib/modules/$(uname -r)/kernel
+find /lib/modules/$(uname -r)/ -name "*.ko"
+
+# currently loaded module into memory
+lsmod
+modinfo module_name
+
+# add module
+modprobe -v dm_mirror
+
+# remove module
+modprobe -vr dm_mirror
+
+# module parameters
+cat /sys/module/e1000/parameters/copybreak
+
+# To change module parameters i have to unload the module first.
+
+# Which modules are needed by hw or other modules.
+depmod -v
+
+# To load module at boot
+echo dm_mirror > /etc/modules-load.d/dm_mirror.conf

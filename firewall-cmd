@@ -1,0 +1,29 @@
+---
+tags [ networking,linux ]
+---
+
+# Zones
+#- **drop**: all incoming packets are dropped without reply only outgoing allowed
+#- **block**: all incoming connections are rejected, only within the system permitted
+#- **public**: only selected computers are permitted
+#- **external**: same trust levels are like with public but used with masquerading
+#- **dmz**: access to some services is permitted to the puclic, only particular incoming connections are allowed
+#- **home**: trust all nodes in the network but still select which incoming connections are allowed
+#- **work**: partially trust connected nodes not to be harmful. only some incoming connections allowed
+#- **internal**: similar to work
+#- **trusted**
+
+# Multi-zoned firewalld configurations, create:
+- a privileged source zone to allow specific IP's elevated access to system services
+- a restrictive interface zone to limit the access of everyone else.
+
+# Panic mode
+firewall-cmd --query-panic
+firewall-cmd --panic-on
+
+# Firewall-cmd rich rules examples
+firewall-cmd --add-rich-rule 'rule family="ipv4" source address="192.168.0.18/24" service name="http" accept' --permanent
+firewall-cmd --add-rich-rule 'rule family="ipv4" source address="192.168.0.0/24" service name="http" drop' --permanent
+
+# Firewall-cmd changing the default target
+firewall-cmd --permanent --zone=public --set-target REJECT|default|DROP|ACCEPT

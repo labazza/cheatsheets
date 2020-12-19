@@ -1,0 +1,6 @@
+---
+tags [ processes,linux ]
+---
+
+# context switches
+perf record -e context-switches -a

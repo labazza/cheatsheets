@@ -1,0 +1,6 @@
+---
+tags [ troubleshooting,linux ]
+---
+
+# human readable
+dmesg -H
