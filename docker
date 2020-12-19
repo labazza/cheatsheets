@@ -1,3 +1,7 @@
++---
++tags [ containers ]
++---
+
 # To start the docker daemon:
 docker -d
 
@@ -36,3 +40,18 @@ docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
 
 # To remove all volumes not used by at least one container:
 docker volume prune
+docker
+
+# To return general status information
+docker info
+docker version
+
+# To return containers statistics
+docker stats myname
+
+# To exit the container and keep it running
+CTRL+p and CTRL+q
+docker attach <container_id>
+
+# To commit an image
+docker commit <container_id> <image_name>

@@ -13,7 +13,7 @@ etcdctl set
 
 
 # Version 3 commands
-etcdctl snapshot save 
+etcdctl snapshot save
 etcdctl endpoint health
 etcdctl get
 etcdctl put
@@ -26,6 +26,6 @@ export ETCDCTL_API=3
 # To specify path to certificate files so that ETCDCTL can authenticate to the ETCD API Server.
 # Available in the etcd-master at the following path.
 
-    --cacert /etc/kubernetes/pki/etcd/ca.crt     
-    --cert /etc/kubernetes/pki/etcd/server.crt     
+    --cacert /etc/kubernetes/pki/etcd/ca.crt
+    --cert /etc/kubernetes/pki/etcd/server.crt
     --key /etc/kubernetes/pki/etcd/server.key

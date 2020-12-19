@@ -1,5 +1,17 @@
+---
+tags [ linux,processes ]
+---
+
 # To kill a process gracefully:
 kill -15 <pid>
 
 # To kill a process forcefully:
 kill -9 <pid>
+
+# Ends all processes of a user:
+    killall -u user_name
+
+# Get signals
+kill -l
+man 7 signal
+cat /proc/$$/status

@@ -1,3 +1,9 @@
+---
+tags [ processes,linux ]
+---
+
+# Processes in [] are kernel threads and if reporting an integer they report the CPU they running on
+
 # To list every process on the system:
 ps aux
 
@@ -13,3 +19,43 @@ ps -eo pid,user,command
 # Exclude grep from your grepped output of ps.
 # Add [] to the first letter. Ex: sshd -> [s]shd
 ps aux | grep '[h]ttpd'
+
+# display all processes, hierarchy, full info
+ps -eHf
+
+# more info with allocatec memory, total memory size and CPU where processes running on
+ps -F
+
+# 17 columns check man
+ps -elF
+
+# with --sort -%cpu reverse ordering
+ps -e --format uid,ppid,%cpu,cmd --sort %cpu
+
+# per process
+ps -C firefofx --format uid,ppid,%cpu,cmd,rss --sort %cpu
+
+# memory per user
+ps -U <user_name> --format %mem | awk '{memory +=1}; END {print memory}’
+
+# To display the threads
+ps -eL
+
+# Runs ps command every 2 seconds
+watch ps -C dd --format pid,cmd,%cpu
+watch -n 1 'ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head'
+
+# Help on process state codes
+man ps "PROCESS STATE CODES"
+
+# Mem hungry processes
+ps aux | sort -nk +4 | tail -5
+
+# High CPU
+ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head
+
+# processes duration
+ps -eo comm,etime,user
+
+# To see more statistics of a process:
+prtstat

@@ -7,7 +7,7 @@ pidstat -wt
 
 # Record the events
 sudo perf record -e context-switches -a
-# then ctrl+c 
+# then ctrl+c
 sudo perf report
 
 # read interrupts

@@ -59,7 +59,7 @@ d{motion}       delete text that {motion} moves over
 :s/foo/bar/	replace the first match of 'foo' with 'bar' on the current line only
 :s/foo/bar/g	replace all matches (`g` flag) of 'foo' with 'bar' on the current line only
 :%s/foo/bar/g	replace all matches of 'foo' with 'bar' in the entire file (`:%s`)
-:%s/foo/bar/gc	ask to manually confirm (`c` flag) each replacement 
+:%s/foo/bar/gc	ask to manually confirm (`c` flag) each replacement
 
 # Preceding a motion or edition with a number repeats it 'n' times
 # Examples:
