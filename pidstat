@@ -1,0 +1,14 @@
+---
+tags [ processes,linux ]
+---
+
+# To display context switching
+pidstat -wt
+
+# Record the events
+sudo perf record -e context-switches -a
+# then ctrl+c 
+sudo perf report
+
+# read interrupts
+watch -tdn1 cat /proc/interrupts

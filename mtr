@@ -1,0 +1,5 @@
+---
+tags [ networking,linux ]
+---
+
+mtr -s 16K --udp -rw -c5 -b 8.8.8.8 > mtr-report

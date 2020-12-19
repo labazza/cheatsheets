@@ -1,0 +1,30 @@
+---
+tags [ bash ]
+---
+
+# Can remove white spaces in files names
+find Pictures/tecmint/ -name *.png -type f -print0 | xargs -0 tar -cvzf images.tar.gz
+
+# List of user accounts
+cut -d: -f1 < /etc/passwd | sort | xargs
+
+# Word counting a set of files
+ls *upload* | xargs wc
+
+# Copy a file to multiple directories
+echo ./Templates/ ./Documents/ | xargs -n 1 cp -v ./Downloads/SIC_Template.xlsx 
+
+# Rename to lowercase
+find Documnets -depth | xargs -n 1 rename -v 's/(.*)\/([^\/]*)/$1\/\L$2/' {} \;
+
+# Remove files except ones with a given extension
+find . -type f -not -name '*gz' -print0 | xargs -0 -I {} rm -v {}
+
+# Read from files instead of standard input
+xargs -a rss_links.txt
+
+# Confirm with user using -p or -d to set a delimiter
+echo ./Templates/ ./Documents/ | xargs -p -n 1 cp -v ./Downloads/SIC_Template.xlsx 
+
+# Download URLs from file using curl
+xargs -n 1 curl -O < listurls.txt

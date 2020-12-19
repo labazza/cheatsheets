@@ -1,0 +1,19 @@
+---
+tags [ storage,linux ]
+---
+
+# RM column, if volume is removable
+lsblk
+
+# get block size
+blockdev --getbsz <partition>
+
+# files
+cat /proc/devices
+ls -l /sys/fs
+ls /dev/disk-by-uid
+
+# disk info
+blkid -i /dev/sdc1
+blkid -p /dev/sdc1
+udevadm info /dev/sdb

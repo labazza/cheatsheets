@@ -1,0 +1,18 @@
+---
+tags [ networking,linux ]
+---
+
+# network simulate random drops
+tc qdisc change dev eth0 root netem loss 0.3% 25%
+
+# remove tc
+tc qdisc del dev eth1 root netem
+
+# 100ms delay
+tc qdisc add dev eth0 root netem delay 100ms
+
+# random 100ms delay
+tc qdisc change dev eth0 root netem delay 100ms 10ms 25%
+
+# distributed delay
+tc qdisc change dev eth0 root netem delay 100ms 20ms distribution normal

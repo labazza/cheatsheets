@@ -1,0 +1,19 @@
+---
+tags [ kernel,linux ]
+---
+
+# To find kernel parameters documentation
+yum install kernel-doc
+rpm -ql kernel-doc|grep sysctl
+
+# To see what kernel boot up
+cat /proc/cmdline
+man bootparam
+
+# write
+sudo sh -c 'echo 1 > /proc/sys/net/ipv4/ip_forward'
+sudo sysctl -w net.ipv4.ip_forward=1
+
+# files
+/proc/meminfo
+/proc/cpuinfo 

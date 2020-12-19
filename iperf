@@ -1,0 +1,9 @@
+---
+tags [ networking,linux,troubleshooting ]
+---
+
+# start listening as server
+iperf3 -s
+
+# start test connecting to host
+iperf3 -p <port> -c <hostname>

@@ -1,0 +1,61 @@
+---
+tags [ virtualization,linux ]
+---
+
+# Converting images
+qemu-img convert -O vdi linux.qcow2 linux.vdi
+
+# Check availability
+grep --color -E 'vmx|svm' /proc/cpuinfo
+lsmod | grep kvm
+
+# Install
+yum install qemu-kvm libvirt libvirt-client virt-install virt-viewer
+
+# Create the VM
+virsh net-list
+virsh net-start deafult
+virt-install --name=centos7vm --ram=1024 --vcpus=1 --cdrom=CentOS-7-x86_64-Minimal-1804.iso --os-type=linux --os-variant=rhel7 --network network=default --disk path=/var/lib/libvirt/images/centos7vm.dsk,size=8
+Operations on the VM
+
+# get info
+virsh list
+virsh dominfo centos7vm
+
+# edit
+virsh edit centos7vm
+
+# Stop
+virsh shutdown centos7vm
+
+# Delete
+virsh undefine centos7vm
+
+# Once stopped you can clone it
+virt-clone --original centos7vm --auto-clone --name centos7vm2
+
+# Enable/disable VM to start at boot of the host
+virsh autostart centos7vm
+virsh autostart --disable centos7vm
+
+# Managing Network interfaces
+virsh domif-getlink <hostname> vnet3
+virsh domif-setlink <hostname> vnet3 down/up
+
+# Network notes
+# virbr0 is the virtual bridge created by default and its IP is the one used by the VM to connect to the host
+
+# Configure Storage Pool
+virsh pool-define-as Spool1 dir - - - - "/mnt/personal-data/SPool1/"
+virsh pool-list --all
+virsh pool-build Spool1
+virsh pool-start Spool1
+virsh pool-autostart Spool1
+virsh pool-info Spool1
+
+# Configure Storage Volumes/Disk Images
+qemu-img create -f raw /mnt/personal-data/SPool1/SVol1.img 10G
+qemu-img info /mnt/personal-data/SPool1/SVol1.img
+
+# Create Virtual Machines
+virt-install --name=rhel7 --disk path=/mnt/personal-data/SPool1/SVol1.img --graphics spice --vcpu=1 --ram=1024 --location=/run/media/dos/9e6f605a-f502-4e98-826e-e6376caea288/rhel-server-7.0-x86_64-dvd.iso --network bridge=virbr0

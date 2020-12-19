@@ -1,0 +1,36 @@
+---
+tags [ storage,linux ]
+---
+
+# Install
+yum install crypt-setup
+lsmod | grep dm_crypt
+
+# format and open
+cryptsetup luksFormat /dev/sdc2
+cryptsetup open /dev/sdc2 secret
+ls /dev/mapper/secret
+
+# create fs
+mkfs.ext4 /dev/mapper/secret
+
+# mount
+mkdir /mnt/secret
+mount /dev/mapper/secret /mnt/secret
+
+# umount and close
+umount /mnt/secret
+cryptsetup close secret
+
+# dump
+cryptsetup luksDump /dev/sdc
+
+# Mount it at boot besides the usual entry in /etc/fstab create one:
+vim /etc/crypttab
+secret /dev/mapper/secret none
+
+# To skip the mounting at boot, add as kernel parameter during boot
+rd.luks=0
+
+# To listed brypted devices
+dmsetup ls --target crypt
