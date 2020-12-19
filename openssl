@@ -1,8 +1,15 @@
+---
+tags [ security ]
+---
+
 # To create a 2048-bit private key:
 openssl genrsa -out server.key 2048
 
 # To create the Certificate Signing Request (CSR):
-openssl req -new -key server.key -out server.csr
+openssl req -new -key server.key -out server.csr -subj "/C=US/ST=TX/L=Dallas/O=Red Hat/OU=IT/CN=test.example.com"
+
+# Or Create a public, private key and a CSR:
+openssl req -out server.csr -new -newkey rsa:2048 -nodes -keyout server.key
 
 # To sign a certificate using a private key and CSR:
 openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
@@ -13,7 +20,7 @@ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 openssl req -text -noout -in server.csr
 
 # To show certificate information for generated certificate
-openssl x509 -text -noout -in server.crt 
+openssl x509 -text -noout -in server.crt
 
 # To get the sha256 fingerprint of a certificate
 openssl x509 -in server.crt -noout -sha256 -fingerprint
@@ -26,13 +33,16 @@ openssl x509 -noout -enddate
 # To generate Diffie-Hellman parameters:
 openssl dhparam -outform PEM -out dhparams.pem 2048
 
+# Generate salted password to put in /etc/passwd. The pwd would be 123. "pam_cracklib.so" makes the passwd checks.
+openssl passwd -1 -salt abc 123
+
 # High-quality options for openssl for symmetric (secret key) encryption
-  
-This is what knowledgable people consider a good set of options for 
+
+This is what knowledgable people consider a good set of options for
 symmetric encryption with openssl to give you a high-quality result.
 Also, always remember that the result is only as good as the password
 you use. You must use a strong password otherwise encryption is meaningless.
-  
+
 openssl enc -e -aes-256-cbc \
   -salt \
   -pbkdf2 \
@@ -51,4 +61,4 @@ openssl enc -d -aes-256-cbc \
   -in somefile.enc \
   -out somefile # to decrypt
 
-  
+

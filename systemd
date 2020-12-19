@@ -1,3 +1,7 @@
+---
+tags [ systemd,linux ]
+---
+
 # To display process startup time:
 systemd-analyze
 
@@ -16,3 +20,6 @@ systemctl <start | stop> foo.service
 # To unit file locations:
 /etc/systemd/system
 /usr/lib/systemd/system
+
+# To analyze a system unit
+systemd-analyze verify unit_service

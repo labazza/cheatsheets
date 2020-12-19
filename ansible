@@ -17,7 +17,7 @@ ansible -m gather_facts ${@}
 
 # Loops with conditional
 - name: Install Softwares
-  hosts: all 
+  hosts: all
   vars:
     packages:
       - name: nginx

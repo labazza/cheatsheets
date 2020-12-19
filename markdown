@@ -1,3 +1,7 @@
+---
+tags [ markdown ]
+---
+
 # headers
 h1 header
 =========
@@ -42,3 +46,15 @@ This is [an example](http://example.com "Title") inline link.
 *em* _em_
 **strong** __strong__
 ~~strikethrough~~
+
+# table
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+# checkbox
+- [ ] Milk
+- [ ] Eggs
+- [x] Beer

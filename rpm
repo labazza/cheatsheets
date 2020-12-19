@@ -1,6 +1,7 @@
 ---
-tags: [ packaging ]
+tags [ packaging,linux ]
 ---
+
 # To install a package:
 rpm -ivh <rpm>
 
@@ -32,3 +33,45 @@ rpm -K <package>
 
 # To verify a package:
 rpm -V <package>
+
+# repoqurey
+repoquery -q --installed --whatrequires libdb
+
+# querying the RPM database
+rpm -qi package
+
+# query information for package installed
+rpm -qp —require package
+
+# show what installed package provides required package
+rpm -qa Group=“Systen Environment/Shells”
+
+# Packages tagged with
+rpm -qa —last
+
+# list of files installed by a package
+rpm -qd package
+
+# query documentation
+rpm -qc package
+
+# From where a file is coming from
+rpm -qdf /bin/bash
+rpm -q —provides bash
+
+# what bash requires
+rpm -q —chnagelog  bash
+
+# Querying packages yet to be installed: create a folder to put the rpms
+yum install yum-plugin-downloadonly
+yum install —downloadonly —downloaddir=/<folder_path> <package>
+rpm -qip <full_package_name>
+
+# query tags
+rpm —querytags
+
+# print aligned only wanted tags
+rpm -qa —queryformat “%-30{NAME} %-10{VERSION}\n”
+
+# square brackets is because is a list so to display them all i need them
+rpm -q —queryformat “[%{FILENAMES} %{FILESIZES}\n]” bash

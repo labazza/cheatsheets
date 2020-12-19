@@ -1,6 +1,7 @@
 ---
 tags [ networking ]
 ---
+
 # Single target scan:
 nmap [target]
 
@@ -70,6 +71,11 @@ nmap -T5 --min-parallelism=50 -n --script "ssl-heartbleed" -pT:443 127.0.0.1
 
 # Show all informations (debug mode)
 nmap -d ...
+
+# check open ports
+nmap -PNp {port} {host}
+nmap -A -sS IP
+nmap -sT -sU -sV locahost
 
 ## Port Status Information
 - Open: This indicates that an application is listening for connections on this port.

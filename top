@@ -1,3 +1,7 @@
+---
+tags [ processes,linux,bash ]
+---
+
 # To update every <interval> samples:
 top -i <interval>
 
@@ -24,3 +28,29 @@ top -h
 
 # To order the display by sorting on <key> in descending order:
 top -o <key>
+
+# Shortcuts
+l, 1, t, m          - toggles
+E                   - toggle memory KiB, MiB, GiB etc
+c                   - to command names
+i                   - remove idle processes
+U                   - user
+k                   - to kill
+r                   - to renice
+
+# Sorting
+f(change fields)    - space to select, use s to sort by, right arrow to select and move it and press left arrow.
+M                   - sort by mem
+P                   - sort by processor
+T                   - time process has been running
+N                   - by process I’d
+
+# Filering
+o then COMMAND=named
+
+# Commands
+b                   - bold to see what is active or running
+x                   - see the column the information is sorted by
+y                   - toggles on running tasks
+<>                  - order column
+R                   - change ordering

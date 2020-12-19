@@ -1,3 +1,7 @@
+---
+tags [ json ]
+---
+
 # To pretty print the json:
 jq "." < filename.json
 
@@ -11,3 +15,6 @@ jq '.[0]'
 jq '.[2:4]'
 jq '.[:3]'
 jq '.[-2:]'
+
+# To reset file offset to beginning
+jq 'map(if (.<key_name> | contains("<string>") ) then .offset |= 0 else . end)'

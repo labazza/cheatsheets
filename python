@@ -1,3 +1,7 @@
+---
+tags [ python,coding ]
+---
+
 # Basic example of server with python
 # Will start a Web Server in the current directory on port 8000
 # go to http://127.0.0.1:8000
@@ -12,3 +16,7 @@ python -m smtpd -n -c DebuggingServer localhost:1025
 
 # Pretty print a json
 python -m json.tool foo.json
+
+# Zipfile
+python3 -m zipfile -c app.zip module1.py run.py timing.py
+python3 -m zipfile -l app.zip
