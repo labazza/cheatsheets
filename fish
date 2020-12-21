@@ -143,3 +143,16 @@ emit my_event
 function myhook --on-event my_event
   ···
 end
+
+# read from a file
+while read -la line
+    echo $line
+end < my_file
+
+# prompt user
+read --prompt "echo 'Name: ' " -l name
+
+# reading from input stream
+while read -la line
+    echo $line
+end
